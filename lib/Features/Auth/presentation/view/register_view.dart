@@ -7,11 +7,10 @@ import 'package:supastore/Features/Auth/presentation/view/widget/custom_text_but
 import 'package:supastore/Features/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
-
 import '../../../home_view.dart';
 
 class RegisterView extends StatefulWidget {
-   RegisterView({super.key});
+   const RegisterView({super.key});
 
   @override
   State<RegisterView> createState() => _RegisterViewState();
@@ -19,8 +18,8 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
    final nameController = TextEditingController();
    final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+   final passwordController = TextEditingController();
+   GlobalKey<FormState> formKey = GlobalKey<FormState>();
    bool isPasswordVisible = true;
 
    @override
@@ -37,7 +36,7 @@ class _RegisterViewState extends State<RegisterView> {
               content: Text(state.errMessage),
               backgroundColor: Colors.red,
             ));
-          }else if(state is RegisterSuccess){
+          }else if(state is RegisterSuccess || state is SignInGoogleSuccess){
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
             HomeView()));
           }
@@ -69,13 +68,15 @@ class _RegisterViewState extends State<RegisterView> {
                               SizedBox(height: height*0.03,),
                               CustomTextField(labelText: "Email",controller: emailController,),
                               SizedBox(height: height*0.03,),
-                              CustomTextField(labelText: "Password",isSecure: true,controller: passwordController,
+                              CustomTextField(labelText: "Password",controller: passwordController,
+                                isSecure: isPasswordVisible,
                                 suffixIcon: IconButton(onPressed: (){
                                   setState(() {
                                     isPasswordVisible = ! isPasswordVisible;
                                   });
                                 },
-                                    icon: Icon(isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                    icon:Icon(isPasswordVisible
+                                        ? Icons.visibility_off : Icons.visibility,
                                       color: Colors.black,)),),
                               SizedBox(height: height*0.03,),
                               CustomRow(text: "Sign Up",onPressed: ()
@@ -89,8 +90,10 @@ class _RegisterViewState extends State<RegisterView> {
                                 }
                               },),
                               SizedBox(height: height*0.027,),
-                              CustomRow(text: "Sign Up with Google",icon: Icons.g_mobiledata
-                                ,onPressed: (){},),
+                              CustomRow(text: "Sign Up with Google",icon: Icons.g_mobiledata,
+                                onPressed: (){
+                                cubit.googleSignIn();
+                                },),
                               SizedBox(height: height*0.027,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

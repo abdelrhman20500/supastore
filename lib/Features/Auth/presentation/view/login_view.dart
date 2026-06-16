@@ -35,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
               content: Text(state.errMessage),
               backgroundColor: Colors.red,
             ));
-          }else if(state is LoginSuccess){
+          }else if(state is LoginSuccess || state is SignInGoogleSuccess){
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
                 HomeView()));
           }
@@ -93,7 +93,9 @@ class _LoginViewState extends State<LoginView> {
                               },),
                               SizedBox(height: height*0.027,),
                               CustomRow(text: "Login with Google",icon: Icons.g_mobiledata
-                                ,onPressed: (){},),
+                                ,onPressed: (){
+                                cubit.googleSignIn();
+                                },),
                               SizedBox(height: height*0.027,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

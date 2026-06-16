@@ -7,7 +7,17 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Home", style: TextStyle(color: Colors.white, fontSize: 22,),),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Home View", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+          ],
+        ),
       ),
     );
   }
