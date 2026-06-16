@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supastore/Core/component/custom_circular_progress_indicator.dart';
 import 'package:supastore/Features/Auth/presentation/view/register_view.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
@@ -28,9 +29,7 @@ class _LoginViewState extends State<LoginView> {
       create: (context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, state) {
-          if(state is LoginLoading){
-            const Center(child: CircularProgressIndicator(color: Colors.blue,),);
-          }else if(state is LoginFailure){
+         if(state is LoginFailure){
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.errMessage),
               backgroundColor: Colors.red,
@@ -44,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
           ///  Cubit Call ...
           AuthCubit cubit = context.read<AuthCubit>();
           return Scaffold(
-            body: SafeArea(
+            body: state is LoginLoading ? CustomCircularProgressIndicator() : SafeArea(
               child: SingleChildScrollView(
                 child: Form(
                   key: formKey,
