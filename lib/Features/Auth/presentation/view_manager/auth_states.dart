@@ -21,3 +21,8 @@ class RegisterSuccess extends AuthStates{}
 class SignInGoogleLoading extends AuthStates{}
 class SignInGoogleFailure extends AuthStates{}
 class SignInGoogleSuccess extends AuthStates{}
+
+/// Logout
+class LogoutLoading extends AuthStates{}
+class LogoutFailure extends AuthStates{}
+class LogoutSuccess extends AuthStates{}
