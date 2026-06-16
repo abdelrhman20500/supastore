@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supastore/Features/Auth/presentation/view/register_view.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
-import 'package:supastore/Features/home_view.dart';
+import 'package:supastore/Features/layout/presentation/view/layout_screen.dart';
 import '../../../../Core/utilis/app_color.dart';
 import 'widget/custom_row.dart';
 import 'widget/custom_text_button.dart';
@@ -37,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
             ));
           }else if(state is LoginSuccess || state is SignInGoogleSuccess){
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-                HomeView()));
+                LayoutScreen()));
           }
         },
         builder: (context, state) {

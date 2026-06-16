@@ -7,7 +7,7 @@ import 'package:supastore/Features/Auth/presentation/view/widget/custom_text_but
 import 'package:supastore/Features/Auth/presentation/view/widget/custom_text_field.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
-import '../../../home_view.dart';
+import 'package:supastore/Features/layout/presentation/view/layout_screen.dart';
 
 class RegisterView extends StatefulWidget {
    const RegisterView({super.key});
@@ -38,7 +38,7 @@ class _RegisterViewState extends State<RegisterView> {
             ));
           }else if(state is RegisterSuccess || state is SignInGoogleSuccess){
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-            HomeView()));
+            LayoutScreen()));
           }
         },
         builder: (context, state) {
