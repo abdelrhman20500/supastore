@@ -16,3 +16,8 @@ class RegisterFailure extends AuthStates{
   RegisterFailure({required this.errMessage});
 }
 class RegisterSuccess extends AuthStates{}
+
+/// SignInGoogle
+class SignInGoogleLoading extends AuthStates{}
+class SignInGoogleFailure extends AuthStates{}
+class SignInGoogleSuccess extends AuthStates{}
