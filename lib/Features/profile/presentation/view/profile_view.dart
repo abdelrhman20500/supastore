@@ -8,7 +8,6 @@ import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dar
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
 import 'package:supastore/Features/profile/presentation/view/widgets/edit_name_screen.dart';
 import 'package:supastore/Features/profile/presentation/view/widgets/my_order_screen.dart';
-
 import '../../../../Core/component/custom_row_bottom.dart';
 
 class ProfileView extends StatelessWidget {

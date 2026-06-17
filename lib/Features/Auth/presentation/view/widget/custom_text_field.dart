@@ -4,18 +4,20 @@ import 'package:supastore/Core/utilis/app_color.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
-    super.key, required this.labelText, this.suffixIcon, this.isSecure= false, this.controller,
+    super.key, required this.labelText, this.suffixIcon,
+    this.isSecure= false, this.controller, this.keyboardType
   });
 
   final String labelText;
   final Widget? suffixIcon;
   final bool isSecure;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: keyboardType,
       obscureText:isSecure,
       controller: controller,
       obscuringCharacter: "*",

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supastore/Core/component/custom_circular_progress_indicator.dart';
+import 'package:supastore/Core/functions/navigate_to.dart';
 import 'package:supastore/Features/Auth/presentation/view/register_view.dart';
+import 'package:supastore/Features/Auth/presentation/view/reset_password_view.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
 import 'package:supastore/Features/layout/presentation/view/layout_screen.dart';
@@ -78,7 +80,9 @@ class _LoginViewState extends State<LoginView> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  CustomTextButton(text: "Forget Password ?", onTab: () {},)
+                                  CustomTextButton(text: "Forget Password ?", onTab: () {
+                                    navigateTo(context, ResetPasswordView());
+                                  },)
                                 ],
                               ),
                               SizedBox(height: height*0.027,),

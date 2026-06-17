@@ -8,7 +8,7 @@ class AuthCubit extends Cubit<AuthStates>{
   AuthCubit() : super(AuthInitial());
   /// instance from supabase...
   SupabaseClient client = Supabase.instance.client;
-
+  /// Login .....
   Future<void> userLogin({required String email, required String password})async{
     emit(LoginLoading());
     try{
@@ -21,6 +21,7 @@ class AuthCubit extends Cubit<AuthStates>{
       emit(LoginFailure(errMessage: e.toString()));
     }
   }
+  /// Register ......
   Future<void> userRegister({required String name, required String email,
     required String password})async{
     emit(RegisterLoading());
@@ -34,7 +35,7 @@ class AuthCubit extends Cubit<AuthStates>{
       emit(RegisterFailure(errMessage: e.toString()));
     }
   }
-
+  /// Sign in With Google .....
   GoogleSignInAccount? googleUser;
   Future<AuthResponse> googleSignIn() async {
     emit(SignInGoogleLoading());
@@ -66,7 +67,7 @@ class AuthCubit extends Cubit<AuthStates>{
     emit(SignInGoogleSuccess());
     return response;
   }
-
+  /// Logout .....
   Future<void> logout()async{
     emit(LogoutLoading());
     try {
@@ -75,6 +76,18 @@ class AuthCubit extends Cubit<AuthStates>{
     } catch (e) {
       print(e.toString());
       emit(LogoutFailure());
+    }
+  }
+  /// Reset Password ......
+  Future<void> resetPassword({required String email})async{
+    emit(ResetPasswordLoading());
+    try {
+      await client.auth.resetPasswordForEmail(email);
+      emit(ResetPasswordSuccess());
+    }catch (e) {
+      print(e.toString());
+     emit(ResetPasswordFailure()
+     );
     }
   }
 }
