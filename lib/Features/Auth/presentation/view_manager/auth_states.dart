@@ -31,3 +31,13 @@ class ResetPasswordSuccess extends AuthStates{}
 class LogoutLoading extends AuthStates{}
 class LogoutFailure extends AuthStates{}
 class LogoutSuccess extends AuthStates{}
+
+/// UserData
+class UserDataLoading extends AuthStates{}
+class UserDataFailure extends AuthStates{}
+class UserDataSuccess extends AuthStates{}
+
+/// GetUserData
+class GetUserDataLoading extends AuthStates{}
+class GetUserDataFailure extends AuthStates{}
+class GetUserDataSuccess extends AuthStates{}

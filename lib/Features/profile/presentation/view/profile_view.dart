@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supastore/Core/component/custom_circular_progress_indicator.dart';
 import 'package:supastore/Core/functions/navigate_without_back.dart';
 import 'package:supastore/Core/utilis/app_color.dart';
+import 'package:supastore/Features/Auth/data/model/user_model.dart';
 import 'package:supastore/Features/Auth/presentation/view/login_view.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_cubit.dart';
 import 'package:supastore/Features/Auth/presentation/view_manager/auth_states.dart';
@@ -17,7 +18,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
     return BlocProvider(
-      create:(context) => AuthCubit(),
+      create:(context) => AuthCubit()..getUserData(),
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, state) {
           if(state is LogoutSuccess){
@@ -25,7 +26,9 @@ class ProfileView extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return state is LogoutLoading ? CustomCircularProgressIndicator() : Center(
+          UserModel? user =context.read<AuthCubit>().userModel;
+          return state is LogoutLoading || state is GetUserDataLoading ?
+          CustomCircularProgressIndicator() : Center(
             child: SizedBox(
               height: height*0.7,
               child: Card(
@@ -45,9 +48,9 @@ class ProfileView extends StatelessWidget {
                         child: Icon(Icons.person, size: 46,),
                       ),
                       SizedBox(height: height*0.03,),
-                      const Text("User Name", style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text(user?.name ??"User Name", style: TextStyle(fontWeight: FontWeight.bold),),
                       SizedBox(height: height*0.01,),
-                      const Text("abdelrhman95@gmail.com"),
+                      Text(user?.email ?? "abdelrhman95@gmail.com"),
                       SizedBox(height: height*0.02,),
                       CustomRowBottom(onTap: ()
                       {
