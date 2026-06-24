@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../Features/Auth/presentation/view/widget/custom_text_button.dart';
+import '../../Features/product_details/presentation/view/product_details.dart';
+import '../functions/navigate_to.dart';
 import '../utilis/app_color.dart';
 import 'cached_image.dart';
 
@@ -10,7 +12,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        // navigateTo(context, const ProductDetails());
+        navigateTo(context, const ProductDetails());
       },
       child: Card(
           shape: RoundedRectangleBorder(
